@@ -7,9 +7,9 @@ services:
             args:
                 - AMZN_LINUX_VER=${AMZN_LINUX_VER}
                 - PHP_VER=${PHP_VER}
-            volumes:
-                - "${WORKSPACE_PATH}:/projects"
-            tty: true
+        volumes:
+            - "${WORKSPACE_PATH}:/projects"
+        tty: true
 
     mysql:
         build:
@@ -17,4 +17,10 @@ services:
             args:
                 - MYSQL_VER_DOT=${MYSQL_VER_DOT}
                 - MYSQL_VER=${MYSQL_VER}
+                - MYSQL_DATABASE=${MYSQL_DATABASE}
+                - MYSQL_USER=${MYSQL_USER}
+                - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+                - MYSQL_PORT=${MYSQL_PORT}
+                - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+                - MYSQL_TZ=${MYSQL_TZ}
 
