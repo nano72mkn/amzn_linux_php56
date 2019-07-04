@@ -2,7 +2,12 @@ version: '3'
 
 services:
   workspace:
-    build: "${WORKSPACE_PATH}"
+    build:
+        context: "${WORKSPACE_PATH}"
+        args:
+            - AMZN_LINUX_VER=${AMZN_LINUX_VER}
+            - PHP_VER=${PHP_VER}
+            - MYSQL_VER=${MYSQL_VER}
     volumes:
       - "${WORKSPACE_PATH}:/projects"
     tty: true

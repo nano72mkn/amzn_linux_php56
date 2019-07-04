@@ -1,4 +1,6 @@
-FROM amazonlinux:2018.03.0.20190212
+ARG AMZN_LINUX_VER
+
+FROM amazonlinux:${AMZN_LINUX_VER}
 WORKDIR /projects
 
 # 時計の調整
@@ -16,19 +18,21 @@ RUN yum -y groupinstall "Development Tools"
 # epel追加
 # RUN amazon-linux-extras install -y epel
 
-# PHP56
+# PHP
+ARG PHP_VER
 RUN yum -y install \
-    php56 \
-    php56-devel \
-    php56-mysqlnd \
-    php56-mbstring \
-    php56-gd
+    php${PHP_VER} \
+    php${PHP_VER}-devel \
+    php${PHP_VER}-mysqlnd \
+    php${PHP_VER}-mbstring \
+    php${PHP_VER}-gd
 
 # phpのタイムゾーン設定
 #RUN "date.timezone=Asia/Tokyo" > /etc/php.ini
 
-# mysql56
-RUN yum -y install mysql56 mysql56-server
+# mysql
+ARG MYSQL_VER
+RUN yum -y install mysql${MYSQL_VER} mysql${MYSQL_VER}-server
 
 # mysqlの設定を追加
 RUN echo "\n[mysqld]\ncharacter_set_server=utf8\ndefault-storage-engine=InnoDB\ninnodb_file_per_table\n\n[mysql]\ndefault-character-set=utf8\n\n[mysqldump]\ndefault-character-set=utf8" >> /etc/my.cnf
