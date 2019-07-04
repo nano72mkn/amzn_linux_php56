@@ -31,8 +31,8 @@ RUN yum -y install \
 #RUN "date.timezone=Asia/Tokyo" > /etc/php.ini
 
 # mysql
-ARG MYSQL_VER
-RUN yum -y install mysql${MYSQL_VER} mysql${MYSQL_VER}-server
+#ARG MYSQL_VER
+#RUN yum -y install mysql${MYSQL_VER} mysql${MYSQL_VER}-server
 
 # mysqlの設定を追加
-RUN echo "\n[mysqld]\ncharacter_set_server=utf8\ndefault-storage-engine=InnoDB\ninnodb_file_per_table\n\n[mysql]\ndefault-character-set=utf8\n\n[mysqldump]\ndefault-character-set=utf8" >> /etc/my.cnf
+#RUN echo "\n[mysqld]\ncharacter_set_server=utf8\ndefault-storage-engine=InnoDB\ninnodb_file_per_table\n\n[mysql]\ndefault-character-set=utf8\n\n[mysqldump]\ndefault-character-set=utf8" >> /etc/my.cnf
