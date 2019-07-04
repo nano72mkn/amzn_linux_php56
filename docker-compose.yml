@@ -1,13 +1,20 @@
 version: '3'
 
 services:
-  workspace:
-    build:
-        context: "${WORKSPACE_PATH}"
-        args:
-            - AMZN_LINUX_VER=${AMZN_LINUX_VER}
-            - PHP_VER=${PHP_VER}
-            - MYSQL_VER=${MYSQL_VER}
-    volumes:
-      - "${WORKSPACE_PATH}:/projects"
-    tty: true
+    workspace:
+        build:
+            context: "${WORKSPACE_PATH}"
+            args:
+                - AMZN_LINUX_VER=${AMZN_LINUX_VER}
+                - PHP_VER=${PHP_VER}
+            volumes:
+                - "${WORKSPACE_PATH}:/projects"
+            tty: true
+
+    mysql:
+        build:
+            context: "${MYSQL_PATH}"
+            args:
+                - MYSQL_VER_DOT=${MYSQL_VER_DOT}
+                - MYSQL_VER=${MYSQL_VER}
+
