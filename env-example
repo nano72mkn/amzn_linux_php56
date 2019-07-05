@@ -1,4 +1,5 @@
 AMZN_LINUX_VER=2018.03.0.20190212
+DATA_PATH=./data
 
 ##### Work Space #####
 
@@ -15,8 +16,11 @@ MYSQL_VER_DOT=5.6
 MYSQL_PATH=./mysql
 MYSQL_DATABASE=default
 MYSQL_USER=default
-MYSQL_PASSWORD=secret
+MYSQL_PASSWORD=pass
 MYSQL_PORT=3306
 MYSQL_ROOT_PASSWORD=root
 MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d
 MYSQL_TZ=UTC
+
+##### LOG #####
+LOG_PATH=./log

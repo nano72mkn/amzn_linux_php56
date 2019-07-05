@@ -17,10 +17,16 @@ services:
             args:
                 - MYSQL_VER_DOT=${MYSQL_VER_DOT}
                 - MYSQL_VER=${MYSQL_VER}
-                - MYSQL_DATABASE=${MYSQL_DATABASE}
-                - MYSQL_USER=${MYSQL_USER}
-                - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-                - MYSQL_PORT=${MYSQL_PORT}
-                - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-                - MYSQL_TZ=${MYSQL_TZ}
-
+        environment:
+            - MYSQL_DATABASE=${MYSQL_DATABASE}
+            - MYSQL_USER=${MYSQL_USER}
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_PORT=${MYSQL_PORT}
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_TZ=${MYSQL_TZ}
+        volumes:
+            - ${DATA_PATH}/mysql:/var/lib/mysql
+            - ${MYSQL_ENTRYPOINT_INITDB}:/docker-entrypoint-initdb.d
+            - ${LOG_PATH}/mysql:/var/log/mysql
+        ports:
+            - "${MYSQL_PORT}:3306"
