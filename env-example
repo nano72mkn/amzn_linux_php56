@@ -1,8 +1,11 @@
 AMZN_LINUX_VER=2018.03.0.20190212
 DATA_PATH=./data
+<<<<<<< HEAD
 
 NETWORKS_DRIVER=bridge
 VOLUMES_DRIVER=local
+=======
+>>>>>>> 9e796d9e9f3cf5c0946858d5cfa4747e127b0c17
 
 ##### Work Space #####
 

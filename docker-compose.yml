@@ -43,5 +43,8 @@ services:
             - ${LOG_PATH}/mysql:/var/log/mysql
         ports:
             - "${MYSQL_PORT}:3306"
+<<<<<<< HEAD
         networks:
             - backend
+=======
+>>>>>>> 9e796d9e9f3cf5c0946858d5cfa4747e127b0c17
