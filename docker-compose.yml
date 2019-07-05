@@ -17,7 +17,6 @@ services:
             context: "${WORKSPACE_PATH}"
             args:
                 - AMZN_LINUX_VER=${AMZN_LINUX_VER}
-                - PHP_VER=${PHP_VER}
         volumes:
             - "${WORKSPACE_PATH}:/var/www"
         tty: true
@@ -43,8 +42,38 @@ services:
             - ${LOG_PATH}/mysql:/var/log/mysql
         ports:
             - "${MYSQL_PORT}:3306"
-<<<<<<< HEAD
+        depends_on:
+            - workspace
         networks:
             - backend
-=======
->>>>>>> 9e796d9e9f3cf5c0946858d5cfa4747e127b0c17
+    php: 
+        image: php:${PHP_VER}
+        volumes:
+            - ${WORKSPACE_PATH}:${APP_CODE_PATH_CONTAINER}
+        depends_on:
+            - workspace
+        networks:
+            - backend
+    nginx: ## laradock
+        build:
+            context: ./nginx
+            args:
+                - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
+                - PHP_UPSTREAM_PORT=${NGINX_PHP_UPSTREAM_PORT}
+                - CHANGE_SOURCE=${CHANGE_SOURCE}
+                - http_proxy
+                - https_proxy
+                - no_proxy
+        volumes:
+            - ${WORKSPACE_PATH}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
+            - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+            - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
+            - ${NGINX_SSL_PATH}:/etc/nginx/ssl
+        ports:
+            - "${NGINX_HOST_HTTP_PORT}:80"
+            - "${NGINX_HOST_HTTPS_PORT}:443"
+        depends_on:
+            - php
+        networks:
+            - frontend
+            - backend

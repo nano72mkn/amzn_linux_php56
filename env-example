@@ -1,11 +1,11 @@
 AMZN_LINUX_VER=2018.03.0.20190212
 DATA_PATH=./data
-<<<<<<< HEAD
+APP_CODE_PATH_CONTAINER=/var/www
+APP_CODE_CONTAINER_FLAG=:cached
+CHANGE_SOURCE=false
 
 NETWORKS_DRIVER=bridge
 VOLUMES_DRIVER=local
-=======
->>>>>>> 9e796d9e9f3cf5c0946858d5cfa4747e127b0c17
 
 ##### Work Space #####
 
@@ -13,7 +13,8 @@ WORKSPACE_PATH=./workspace
 
 ##### PHP #####
 
-PHP_VER=56
+PHP_VER=5.6-fpm
+
 
 ##### MySQL #####
 
@@ -27,6 +28,16 @@ MYSQL_PORT=3306
 MYSQL_ROOT_PASSWORD=root
 MYSQL_ENTRYPOINT_INITDB=./mysql/docker-entrypoint-initdb.d
 MYSQL_TZ=UTC
+
+##### NGINX #####
+
+NGINX_HOST_HTTP_PORT=8080
+NGINX_HOST_HTTPS_PORT=443
+NGINX_HOST_LOG_PATH=./log/nginx/
+NGINX_SITES_PATH=./nginx/sites/
+NGINX_PHP_UPSTREAM_CONTAINER=php
+NGINX_PHP_UPSTREAM_PORT=9000
+NGINX_SSL_PATH=./nginx/ssl/
 
 ##### LOG #####
 LOG_PATH=./log
