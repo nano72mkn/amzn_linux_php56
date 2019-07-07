@@ -13,8 +13,11 @@ WORKSPACE_PATH=./workspace
 
 ##### PHP #####
 
-PHP_VER=5.6-fpm
+# workspace用
+PHP_VER=56
 
+# サーバーのPHPのバージョンはimgae基準
+PHP_IMAGE=5.6-fpm
 
 ##### MySQL #####
 
