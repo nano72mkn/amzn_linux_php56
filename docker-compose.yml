@@ -17,6 +17,7 @@ services:
             context: "${WORKSPACE_PATH}"
             args:
                 - AMZN_LINUX_VER=${AMZN_LINUX_VER}
+                - PHP_VER=${PHP_VER}
         volumes:
             - "${WORKSPACE_PATH}:/var/www"
         tty: true
@@ -47,7 +48,7 @@ services:
         networks:
             - backend
     php: 
-        image: php:${PHP_VER}
+        image: php:${PHP_IMAGE}
         volumes:
             - ${WORKSPACE_PATH}:${APP_CODE_PATH_CONTAINER}
         depends_on:
