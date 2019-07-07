@@ -1,2 +1,2 @@
 init:
-	ln -sf env-example .env
+	cp env-example .env
