@@ -29,4 +29,14 @@ RUN yum -y install \
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
+
+############
+# nvm node npm :
+############
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+RUN export NVM_DIR="$HOME/.nvm"
+RUN [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+RUN nvm install --lts
+RUN nvm use --lts
+
 WORKDIR /var/www
